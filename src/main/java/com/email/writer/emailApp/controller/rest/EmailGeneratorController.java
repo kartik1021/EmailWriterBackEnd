@@ -19,10 +19,8 @@ public class EmailGeneratorController {
 
     @PostMapping("/generate")
     public ResponseEntity<String> generateEmail(@RequestBody EmailRequest emailRequest) {
-        log.info("emailContent: {}", emailRequest.getEmailContent());
-    log.info("tone: {}", emailRequest.getTone());
-
-    String mockReply = "Hi there! This is a test reply with tone: " + emailRequest.getTone();
-    return ResponseEntity.ok(mockReply);
+        log.info( "request bode --------->>>>" + emailRequest.toString());
+        String response = emailGeneratorService.generateEmailReply(emailRequest);
+        return ResponseEntity.ok(response);
     }
 }

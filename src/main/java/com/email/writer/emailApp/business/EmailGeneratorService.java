@@ -5,10 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.email.writer.emailApp.domain.EmailRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Map;
 
+@Slf4j
 @Service
 public class EmailGeneratorService {
 
@@ -26,6 +28,8 @@ public class EmailGeneratorService {
 
     public String generateEmailReply(EmailRequest emailRquest){
         String prompt = buildPrompt(emailRquest);
+
+        log.info("---------->>>>>>>." + prompt);
 
         Map<String, Object> requestBody = Map.of(
                 "contents", new Object[] {
